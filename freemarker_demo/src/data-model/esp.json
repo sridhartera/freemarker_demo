@@ -1,0 +1,71 @@
+{
+   "feature_metadata":{
+      "focusid": "1234",
+      "device": [
+      {
+         "devicecode": "DESKTOP",                  		                       
+         "typecode": "ENHANCED",
+         "externalcontentlocations": [
+         {
+            "type": "gate",            
+            "scope": "EPISODE",
+            "location": "/esp/modeshape/location"
+        },
+        {
+            "type": "type2",            
+            "scope": "EPISODE",
+            "location": "/esp/modeshape/location"
+        }        
+        ],
+         "alerts": [
+         {
+            "starttime": "0",
+            "endtime": "10:10:10",
+            "title": "sample title",
+            "description": "sample description",
+            "themeclasscode": "IMAGE",
+            "iconurl_location": "/esp/modeshape/url",
+            "alertimage_location": "/esp/modeshape/image",
+            "alertimage_createdate": "01/16/2013",
+            "takeover_location": "/esp/project",
+            "createddate": "01/16/2013"
+         },
+         {
+            "starttime": "123",
+            "endtime": "10:10:10",
+            "title": "sample title",
+            "description": "sample description",
+            "themeclasscode": "IMAGE",
+            "iconurl_location": "/esp/modeshape/url",
+            "alertimage_location": "/esp/modeshape/image",
+            "alertimage_createdate": "01/16/2013",
+            "takeover_location": "/esp/project",
+            "createddate": "01/16/2013"
+         }
+         ]
+      },
+      {
+         "devicecode": "IPAD",                  		                       
+         "typecode": "ENHANCED",
+         "externalcontentlocations": [{
+            "type": "gate",            
+            "scope": "EPISODE",
+            "location": "/esp/modeshape/location"
+        }],
+         "alerts": [{
+            "starttime": "0",
+            "endtime": "10:10:10",
+            "title": "sample title",
+            "description": "sample description",
+            "themeclasscode": "IMAGE",
+            "iconurl_location": "/esp/modeshape/url",
+            "alertimage_location": "/esp/modeshape/image",
+            "alertimage_createdate": "01/16/2013",
+            "takeover_location": "/esp/project",
+            "createddate": "01/16/2013"
+         }]
+      }      
+      ]
+ 	}, 
+   "version": 1.0   
+}

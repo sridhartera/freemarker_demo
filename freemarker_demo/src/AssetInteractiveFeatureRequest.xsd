@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- ~ Copyright (c) 2012 Home Box Office, Inc. as an unpublished ~ work. 
+	Neither this material nor any portion hereof may be copied ~ or distributed 
+	without the express written consent of Home Box Office, Inc. ~ ~ This material 
+	also contains proprietary and confidential information ~ of Home Box Office, 
+	Inc. and its suppliers, and may not be used by or ~ disclosed to any person, 
+	in whole or in part, without the prior written ~ consent of Home Box Office, 
+	Inc. -->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:simpleType name="serviceType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="HBO" />
+			<xsd:enumeration value="MAX" />
+			<xsd:enumeration value="HBO_BR" />
+			<xsd:enumeration value="HBO_LA" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="actionType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="add" />
+			<xsd:enumeration value="update" />
+			<xsd:enumeration value="delete" />
+			<xsd:enumeration value="none" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="proxyType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ASSET" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="image">
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:string" />
+			<xsd:element name="imageClass" type="xsd:string" />
+			<xsd:element name="previousImageClass" type="xsd:string"
+				nillable="false" default="0" />
+			<xsd:element name="type" type="xsd:string" />
+			<xsd:element name="title" type="xsd:string" />
+			<xsd:element name="did" type="xsd:string" />
+			<xsd:element name="fileName" type="xsd:string" />
+			<xsd:element name="focusId" type="xsd:string" />
+		</xsd:sequence>
+		<xsd:attribute name="action" type="actionType" />
+	</xsd:complexType>
+
+	<xsd:complexType name="videoClip">
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:string" />
+			<xsd:element name="videoClipClass" type="xsd:string" />
+			<xsd:element name="previousVideoClipClass" type="xsd:string"
+				nillable="false" default="0" />
+			<xsd:element name="title" type="xsd:string" />
+			<xsd:element name="did" type="xsd:string" />
+			<xsd:element name="fileName" type="xsd:string" />
+			<xsd:element name="focusId" type="xsd:string" />
+		</xsd:sequence>
+		<xsd:attribute name="action" type="actionType" />
+	</xsd:complexType>
+
+	<xsd:complexType name="interactiveFeatureRequest">
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:string" />
+			<xsd:element name="interactiveFeatureType" type="xsd:string" />
+			<xsd:element name="talentName" type="xsd:string" />
+			<xsd:element name="talentTwitterName" type="xsd:string" />
+			<xsd:element name="browseMetadataLocations">
+				<xsd:complexType>
+					<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+						<xsd:element name="browseMetadata" type="browseMetadataRequest" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<!-- <xsd:element name="browseMetadataLocation" type="xsd:string" /> -->
+			<xsd:element name="deviceCode" type="xsd:string" />
+			<xsd:element name="alerts">
+				<xsd:complexType>
+					<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+						<xsd:element name="alert" type="alertRequest" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="alertRequest">
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:string" />
+			<xsd:element name="startTime" type="xsd:int" />
+			<xsd:element name="stopTime" type="xsd:int" />
+			<xsd:element name="title" type="xsd:string" />
+			<xsd:element name="twitterName" type="xsd:string" />
+			<xsd:element name="description" type="xsd:string" />
+			<xsd:element name="themeClass" type="xsd:string" />
+			<xsd:element name="images">
+				<xsd:complexType>
+					<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+						<xsd:element name="image" type="image" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="videoClips">
+				<xsd:complexType>
+					<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+						<xsd:element name="videoClip" type="videoClip" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="action" type="actionType" />
+	</xsd:complexType>
+
+	<xsd:complexType name="browseMetadataRequest">
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:string" />
+			<xsd:element name="type" type="xsd:string" />
+			<xsd:element name="url" type="xsd:string" />
+		</xsd:sequence>
+		<xsd:attribute name="action" type="actionType" />
+	</xsd:complexType>
+
+	<xsd:element name="assetInteractiveFeatureRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="interactiveFeatures">
+					<xsd:complexType>
+						<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+							<xsd:element name="interactiveFeature" type="interactiveFeatureRequest" />
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+			<xsd:attribute name="tkey" type="xsd:string" />
+			<xsd:attribute name="action" type="actionType" />
+			<xsd:attribute name="service" type="serviceType" use="optional" />
+			<xsd:attribute name="type" type="proxyType" />
+			<xsd:attribute name="user" type="xsd:string" />
+			<xsd:attribute name="audit" type="xsd:string" />
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>
