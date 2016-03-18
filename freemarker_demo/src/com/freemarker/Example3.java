@@ -24,7 +24,7 @@ public class Example3
 		}
 	}
 
-	// Process a template using FreeMarker and print the results
+	// Process a template using FreeMarker and print the results.
 	static void freemarkerDo(Map<String, Object> datamodel, String template) throws Exception
 	{
 		Configuration cfg = new Configuration();
